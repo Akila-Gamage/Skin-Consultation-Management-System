@@ -2,6 +2,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,7 +18,7 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
         System.out.println("Enter the phone number of the doctor: ");
         String MobileNo = sc.nextLine();
         System.out.println("Enter the Date of birth of the doctor: ");
-        String DOB = sc.nextLine();
+        LocalDate DOB = LocalDate.parse(sc.nextLine());
         System.out.println("Enter the speciality of the doctor: ");
         String Speciality = sc.nextLine();
         Doctor doctor = new Doctor(FName, LName, MobileNo, DOB, Speciality);

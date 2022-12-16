@@ -15,7 +15,7 @@ public abstract class Person {
     public abstract void setFName(String FName);
     public abstract void setLName(String LName);
     public abstract void setMobileNo(String mobileNo);
-    public abstract void setDOB(String DOB);
+    public abstract void setDOB(LocalDate DOB);
 
 
 }
