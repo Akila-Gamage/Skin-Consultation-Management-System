@@ -6,6 +6,7 @@ public class Doctor extends Person {
     public String Speciality;
 
 
+    private Consultation consultation = new Consultation();
     public Doctor(String FName, String LName, String MobileNo, String DOB, String Speciality){
         this.FName = FName;
         this.LName = LName;
