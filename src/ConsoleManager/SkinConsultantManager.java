@@ -1,3 +1,5 @@
+package ConsoleManager;
+
 public interface SkinConsultantManager {
     void addDoctor();
     void deleteDoctor();

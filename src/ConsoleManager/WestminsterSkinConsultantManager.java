@@ -1,5 +1,6 @@
+package ConsoleManager;
+
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -7,40 +8,71 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WestminsterSkinConsultantManager implements SkinConsultantManager {
-    static ArrayList<Doctor> DoctorList = new ArrayList<Doctor>(2);
+    static ArrayList<Doctor> DoctorList = new ArrayList<Doctor>(10);
 
-    public void addDoctor(){  // Add a new Doctor
-        boolean docSize = (DoctorList.size() == 0) ? false : true;
+    public void addDoctor(){  // Add a new ConsoleManager.Doctor
+        boolean docSize = (DoctorList.size() == 10) ? false : true;
         if (docSize) {
-            String FName, LName, MobileNo, Speciality;
-            LocalDate DOB;
+            String MID ,FName, LName, MobileNo, Speciality;
+            LocalDate DOB = null;
             boolean loop = true;
 
             System.out.println("Add a new Doctor");
 
+            System.out.println("Enter the Medical ID of the doctor: ");
+            MID = inputString();
+
             System.out.println("Enter the First name of the doctor: ");
-            FName = inputString();
+            FName = inputString().trim();
 
             System.out.println("Enter the Last name of the doctor: ");
             LName = inputString();
 
             System.out.println("Enter the phone number of the doctor: ");
             MobileNo = inputString();
+
+            do {
+                System.out.println("Enter the Date of birth of the doctor: ");
+                String year, month, day;
+                System.out.println("Enter the year: ");
+                year = inputString();
+                System.out.println("Enter the month: ");
+                month = inputString();
+                System.out.println("Enter the day: ");
+                day = inputString();
+                try {
+                    DOB = LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+                    loop = false;
+                } catch (Exception e) {
+                    System.out.println("Invalid date!");
+                }
+            } while (loop);
+
+            System.out.println("Enter the speciality of the doctor: ");
+            Speciality = inputString();
+
+            Doctor doctor = new Doctor(MID ,FName, LName, MobileNo, DOB, Speciality);
+            System.out.println("Doctor added successfully!");
+            DoctorList.add(doctor);
+            }
         }
-    }
     public void deleteDoctor(){  //delete doctor
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the name of the doctor: ");
-        String Name = sc.nextLine();
-        for (int i = 0; i < DoctorList.size(); i++) {
-            if (DoctorList.get(i).getFName().equals(Name)) {
-                DoctorList.remove(i);
-                System.out.println("Doctor deleted successfully!");
-            }else {
-                System.out.println("Doctor not found!");
+        System.out.println("Enter the Medical ID of the doctor: ");
+        String MID = inputString();
+        if (DoctorList.size() == 0) {
+            System.out.println("No doctors to delete!");
+        } else {
+            for (int i = 0; i < DoctorList.size(); i++) {
+                if (DoctorList.get(i).equals(MID)) {
+                    DoctorList.remove(i);
+                    System.out.println("Doctor deleted successfully!");
+                } else {
+                    System.out.println("Doctor not found!");
+                }
             }
         }
     }
+
     public void displayDoctor(){
         for (int i = 0; i < DoctorList.size(); i++) {  //view all doctors
             System.out.println("First Name: " + DoctorList.get(i).getFName());
@@ -70,7 +102,7 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
         }
     }
 
-    public int inputInt() {
+    public int inputInt() { //method to input integer
         Scanner user = new Scanner(System.in);
         int input = 0;
         try {
@@ -80,7 +112,8 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
         }
         return input;
     }
-    public String inputString() {
+
+    public String inputString() { //method to input string
         Scanner user = new Scanner(System.in);
         String input = "";
         try {
@@ -90,6 +123,7 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
         }
         return input;
     }
+
     public int menu() {
         System.out.println("------------------------------------------------------");
         System.out.println("|   Welcome to Westminster Skin Consultant Manager   |");
@@ -101,15 +135,19 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
         System.out.println("            [5] - Exit");
         System.out.println("------------------------------------------------------");
         System.out.println("Enter your choice: ");
-        int menuNumber = inputInt();
-        return menuNumber;
+        int Number = inputInt();
+        return Number;
     }
     public static void main(String[] args) {
+
         WestminsterSkinConsultantManager SkinConsultantManager = new WestminsterSkinConsultantManager();
         boolean loop = true;
         do{
             int menuNumber = SkinConsultantManager.menu();
             switch (menuNumber) {
+                case -1:
+                    SkinConsultantManager.addDoctor();
+                    break;
                 case 1:
                     SkinConsultantManager.addDoctor();
                     break;
