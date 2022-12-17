@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Patient extends Person {
       private String FName;
       private String LName;
@@ -18,7 +20,7 @@ public class Patient extends Person {
         return null;
     }
     @Override
-    public String getDOB() {
+    public LocalDate getDOB() {
         return null;
     }
 
@@ -35,7 +37,7 @@ public class Patient extends Person {
 
     }
     @Override
-    public void setDOB(String DOB) {
+    public void setDOB(LocalDate DOB) {
 
     }
 }
