@@ -143,11 +143,17 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
         System.out.println("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
         System.out.println("|    Welcome to Westminster Skin Consultant Manager     |");
         System.out.println("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
+        System.out.println("|                                                       |");
         System.out.println("|           [1] - Add a new Doctor                      |");
+        System.out.println("|                                                       |");
         System.out.println("|           [2] - Delete a Doctor                       |");
+        System.out.println("|                                                       |");
         System.out.println("|           [3] - Print all Doctors                     |");
+        System.out.println("|                                                       |");
         System.out.println("|           [4] - Save all Doctors to a file            |");
+        System.out.println("|                                                       |");
         System.out.println("|           [5] - Exit                                  |");
+        System.out.println("|                                                       |");
         System.out.println("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
         System.out.println("Enter your choice: ");
         int Number = inputInt();
