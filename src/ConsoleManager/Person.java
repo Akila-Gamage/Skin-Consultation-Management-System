@@ -3,10 +3,6 @@ package ConsoleManager;
 import java.time.LocalDate;
 
 public abstract class Person {
-    private String FName;
-    private String LName;
-    private String MobileNo;
-    private LocalDate DOB;
 
     public abstract String getFName();
     public abstract String getLName();

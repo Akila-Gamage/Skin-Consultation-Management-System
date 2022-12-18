@@ -1,9 +1,6 @@
 package ConsoleManager;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -117,7 +114,19 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
         }
     }
 
-        public int inputInt() { //method to input integer
+    public void ReadFile() {
+        try (BufferedReader br = new BufferedReader(new FileReader("DoctorDetails.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public int inputInt() { //method to input integer
         Scanner user = new Scanner(System.in);
         int input = 0;
         try {
@@ -152,7 +161,9 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
         System.out.println("|                                                       |");
         System.out.println("|           [4] - Save all Doctors to a file            |");
         System.out.println("|                                                       |");
-        System.out.println("|           [5] - Exit                                  |");
+        System.out.println("|           [5] - Read all Doctors from the file         |");
+        System.out.println("|                                                       |");
+        System.out.println("|           [6] - Exit                                  |");
         System.out.println("|                                                       |");
         System.out.println("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
         System.out.println("Enter your choice: ");
@@ -182,6 +193,9 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
                     SkinConsultantManager.WriteToFile();
                     break;
                 case 5:
+                    SkinConsultantManager.ReadFile();
+                    break;
+                case 6:
                     loop = false;
                     break;
                 default:
