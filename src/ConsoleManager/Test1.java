@@ -58,11 +58,12 @@ package ConsoleManager;//import java.util.Scanner;
 //        DoctorList.add(doctor);
 //}
 public class Test1 {
-    public static void main(String[] args) {
-        String MID = "1234", FName = "akila", LName = "gamage",mobileno = "23432432" , DOb = "2001-01-01", speciallity = "sdfjkjsdkf";
-        System.out.println("+-----------------------+-----------------------+-----------------------+-----------------------+---------------------------+-------------------------+");
-        System.out.println("|\t\tMedical ID\t\t|\t\tFirst Name\t\t|\t\tLast Name\t\t|\t\tMobile No\t\t|\t\tDate Of Birth\t\t| \t\tSpeciality\t\t  |");
-        System.out.println("+-----------------------+-----------------------+-----------------------+-----------------------+---------------------------+-------------------------+");
-        System.out.printf("|       %-15s |       %-15s |       %-15s |      %-16s |        %-18s |       %-17s |", MID, FName, LName, mobileno, DOb,speciallity);
-    }
+//    public static void main(String[] args) {
+//        String MID = "1234", FName = "akila", LName = "gamage",mobileno = "23432432" , DOb = "2001-01-01", speciallity = "sdfjkjsdkf";
+//        System.out.println("+-----------------------+-----------------------+-----------------------+-----------------------+---------------------------+-------------------------+");
+//        System.out.println("|\t\tMedical ID\t\t|\t\tFirst Name\t\t|\t\tLast Name\t\t|\t\tMobile No\t\t|\t\tDate Of Birth\t\t| \t\tSpeciality\t\t  |");
+//        System.out.println("+-----------------------+-----------------------+-----------------------+-----------------------+---------------------------+-------------------------+");
+//        System.out.printf("|       %-15s |       %-15s |       %-15s |      %-16s |        %-18s |       %-17s |", MID, FName, LName, mobileno, DOb,speciallity);
+//    }
+
 }

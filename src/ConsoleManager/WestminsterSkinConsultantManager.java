@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class WestminsterSkinConsultantManager implements SkinConsultantManager {
     static ArrayList<Doctor> DoctorList = new ArrayList<Doctor>(10);
 
-    public void addDoctor(){  // Add a new ConsoleManager.Doctor
+    public void addDoctor(){  // Add a new Doctor
         boolean docSize = (DoctorList.size() == 10) ? false : true;
         if (docSize) {
             String MID ,FName, LName, MobileNo, Speciality;
@@ -56,7 +56,7 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
             DoctorList.add(doctor);
             }
         }
-    public void deleteDoctor(){  //delete doctor
+    public void deleteDoctor(){  //delete a doctor using medical ID
         if (DoctorList.size() == 0) {
             System.out.println("No doctors to delete!");
         } else {
