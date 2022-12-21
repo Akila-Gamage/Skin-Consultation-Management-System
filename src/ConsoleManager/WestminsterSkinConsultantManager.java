@@ -1,5 +1,7 @@
 package ConsoleManager;
 
+import GUI.MainMenu;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -163,7 +165,9 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
         System.out.println("|                                                       |");
         System.out.println("|           [5] - Read all Doctors from the file         |");
         System.out.println("|                                                       |");
-        System.out.println("|           [6] - Exit                                  |");
+        System.out.println("|           [6] - Open GUI                              |");
+        System.out.println("|                                                       |");
+        System.out.println("|           [7] - Exit                                  |");
         System.out.println("|                                                       |");
         System.out.println("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
         System.out.println("Enter your choice: ");
@@ -196,6 +200,9 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
                     SkinConsultantManager.ReadFile();
                     break;
                 case 6:
+                    new MainMenu();
+                    break;
+                case 7:
                     loop = false;
                     break;
                 default:

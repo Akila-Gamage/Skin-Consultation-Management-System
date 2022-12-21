@@ -1,26 +1,15 @@
 package GUI;
 
+import ConsoleManager.Doctor;
+
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class NewConsultation extends MenuController{
-    public JLabel lbl;
-    public JButton btn;
-
-
     public NewConsultation(){
-        lbl = new JLabel(OptionNumber());
-        add(lbl);
+        MenuController(800,600,"Add new consultation");
+        setVisible(true);
 
-        btn =new JButton(OptionName());
-        add(btn);
-    }
-    @Override
-    public String OptionNumber() {
-        return "[2]";
     }
 
-    @Override
-    public String OptionName() {
-        return "Add new Consultation";
-    }
 }

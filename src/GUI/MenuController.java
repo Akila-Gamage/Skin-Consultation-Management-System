@@ -5,9 +5,6 @@ import java.awt.*;
 
 abstract class MenuController extends JFrame {
 
-    public abstract String OptionNumber();
-    public abstract String OptionName();
-
     public void MenuController(int width, int height, String title) {
         setSize(width, height);
         setTitle(title);
