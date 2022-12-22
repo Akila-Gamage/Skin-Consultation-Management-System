@@ -1,16 +1,16 @@
 package GUI;
 
 import ConsoleManager.Doctor;
-import ConsoleManager.WestminsterSkinConsultantManager;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.time.LocalDate;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 
 public class ViewAllDoctors extends MenuController {
+    JButton backbtn;
     JTable DoctorTable ;
     Doctor[] doctorList;
 
@@ -23,20 +23,30 @@ public class ViewAllDoctors extends MenuController {
         DoctorTable = new JTable(tablemodel);
         DoctorTable.setBounds(30,40,200,400);
 
-        for (Doctor DoctorList : doctorList){
-            String[] details = {Doctor.getMedicalID(),Doctor.getFName(),Doctor.getLName(), String.valueOf(Doctor.getDOB()),Doctor.getSpeciality()};
-            tablemodel.addRow(details);
-        }
-//        String[][] details ={
-//            {"B065", "Emma", "Fajs", "1234567890", "2001-01-01", "heart"},
-//            {"M034", "Olivia", "Fdsad", "1234567890", "2001-01-01",  "heart"}
-//        };
-//        tablemodel.addRow(details);
-
+//        for (Doctor ignored : doctorList){
+//            String[] details = {Doctor.getMedicalID(),Doctor.getFName(),Doctor.getLName(), String.valueOf(Doctor.getDOB()),Doctor.getSpeciality()};
+//            tablemodel.addRow(details);
+//        }
         JScrollPane sp = new JScrollPane(DoctorTable);
-        add(sp);
+
+        JPanel btnpnl = new JPanel();
+        btnpnl.setBounds(0,0,80,80);
+        backbtn = new JButton();
+        Button(backbtn,"Back");
+        btnpnl.add(backbtn);
+
+        this.add(sp,BorderLayout.NORTH);
+        this.add(btnpnl,BorderLayout.SOUTH);
 
     }
+
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource()==backbtn){
+            this.setVisible(false);
+            new MainMenu().setVisible(true);
+        }
+    }
+
 
 }
 

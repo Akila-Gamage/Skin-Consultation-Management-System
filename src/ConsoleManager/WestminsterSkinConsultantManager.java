@@ -199,9 +199,9 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
                 case 5:
                     SkinConsultantManager.ReadFile();
                     break;
-                case 6:
-                    new MainMenu();
-                    break;
+//                case 6:
+//                    new MainMenu();
+//                    break;
                 case 7:
                     loop = false;
                     break;

@@ -2,7 +2,7 @@ package ConsoleManager;
 
 import java.time.LocalDate;
 
-public abstract class Person {
+public class Person {
 
     public static String FName;
     public static String LName;
@@ -27,7 +27,7 @@ public abstract class Person {
     }
 
 
-
+    //setters
     public void setFName(String FName) {
         this.FName = FName;
     }

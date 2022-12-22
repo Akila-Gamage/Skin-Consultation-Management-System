@@ -2,8 +2,10 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-abstract class MenuController extends JFrame {
+abstract class MenuController extends JFrame implements ActionListener {
 
     public void MenuController(int width, int height, String title) {
         setSize(width, height);
@@ -13,6 +15,15 @@ abstract class MenuController extends JFrame {
         setResizable(false);
         setLayout(new BorderLayout());
     }
+    public void Button(JButton y, String name){
+        y.setBounds(0,0,90,40);
+        y.setText(name);
+        y.setFocusable(false);
+        y.setBackground(Color.WHITE);
+        y.addActionListener(this);
+        this.add(y);
+    }
+
 
 }
 
