@@ -5,28 +5,26 @@ import ConsoleManager.Consultation;
 import java.time.LocalDate;
 
 public class Doctor extends Person {
-    public static String Speciality;
-
-    public static String MedicalID;
+    private String Speciality;
+    private static String MedicalID;
 
 
     private Consultation consultation = new Consultation();
     public Doctor(String MedicalID ,String FName, String LName, String MobileNo, LocalDate DOB, String Speciality){
-        super();
         this.MedicalID = MedicalID;
-        this.FName = FName;
-        this.LName = LName;
-        this.MobileNo = MobileNo;
-        this.DOB = DOB;
+        setFName(FName);
+        setLName(LName);
+        setMobileNo(MobileNo);
+        setDOB(DOB);
         this.Speciality = Speciality;
     }
 
     //getters
 
-    public static String getSpeciality() {
+    public String getSpeciality() {
         return Speciality;
     }
-    public static String getMedicalID() {
+    public String getMedicalID() {
         return MedicalID;
     }
 

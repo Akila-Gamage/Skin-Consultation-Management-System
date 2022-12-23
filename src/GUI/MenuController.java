@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-abstract class MenuController extends JFrame implements ActionListener {
+abstract class MenuController extends JFrame {
 
     public void MenuController(int width, int height, String title) {
         setSize(width, height);
@@ -20,8 +20,6 @@ abstract class MenuController extends JFrame implements ActionListener {
         y.setText(name);
         y.setFocusable(false);
         y.setBackground(Color.WHITE);
-        y.addActionListener(this);
-        this.add(y);
     }
 
 

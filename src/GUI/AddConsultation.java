@@ -8,8 +8,5 @@ public class AddConsultation extends MenuController{
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
-    }
 }

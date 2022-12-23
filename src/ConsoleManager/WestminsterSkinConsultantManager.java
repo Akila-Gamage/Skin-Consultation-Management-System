@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class WestminsterSkinConsultantManager implements SkinConsultantManager {
-    static ArrayList<Doctor> DoctorList = new ArrayList<Doctor>(10);
+    private ArrayList<Doctor> DoctorList = new ArrayList<Doctor>(10);
 
     public void addDoctor(){  // Add a new Doctor
         boolean docSize = (DoctorList.size() == 10) ? false : true;
@@ -199,9 +199,9 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
                 case 5:
                     SkinConsultantManager.ReadFile();
                     break;
-//                case 6:
-//                    new MainMenu();
-//                    break;
+                case 6:
+                    SkinConsultantManager.openGUI();
+                    break;
                 case 7:
                     loop = false;
                     break;
@@ -212,7 +212,20 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
         }while (loop);
 
     }
+    public void openGUI(){
+        new MainMenu(this).setVisible(true);
+    }
 
+    public Doctor getDoctorArrayObj(int position){
+        return this.DoctorList.get(position);
+    }
+
+    public void setDoctorList(Doctor doctor){
+        this.DoctorList.add(doctor);
+    }
+    public ArrayList<Doctor> getDoctorArray(){
+        return this.DoctorList;
+    }
 
 }
 

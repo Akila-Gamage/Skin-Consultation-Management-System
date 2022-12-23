@@ -43,15 +43,15 @@ public class NewConsultation extends MenuController{
         this.add(btnpnl,BorderLayout.SOUTH);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==backbtn){
-            this.setVisible(false);
-            new MainMenu().setVisible(true);
-        } else if (e.getSource()==AddConsultationbtn) {
-            this.dispose();
-            new AddConsultation();
-
-        }
-    }
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        if(e.getSource()==backbtn){
+//            this.setVisible(false);
+//            new MainMenu().setVisible(true);
+//        } else if (e.getSource()==AddConsultationbtn) {
+//            this.dispose();
+//            new AddConsultation();
+//
+//        }
+//    }
 }

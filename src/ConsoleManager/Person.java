@@ -4,25 +4,25 @@ import java.time.LocalDate;
 
 public class Person {
 
-    public static String FName;
-    public static String LName;
-    public static String MobileNo;
-    public static LocalDate DOB;
+    private String FName;
+    private String LName;
+    private String MobileNo;
+    private LocalDate DOB;
 
     //getters
-    public static String getFName() {
+    public String getFName() {
         return FName;
     }
 
-    public static String getLName() {
+    public String getLName() {
         return LName;
     }
 
-    public  static String getMobileNo() {
+    public  String getMobileNo() {
         return MobileNo;
     }
 
-    public static LocalDate getDOB() {
+    public  LocalDate getDOB() {
         return DOB;
     }
 
