@@ -1,5 +1,6 @@
 package GUI;
 
+import ConsoleManager.Doctor;
 import ConsoleManager.SkinConsultantManager;
 
 import javax.swing.*;
@@ -26,10 +27,10 @@ public class NewConsultation extends MenuController{
             backGroundClr(doctorsPnl);
 
             //Set All doctor buttons to add consultation
-            int doctorCount = i;
+            int doctorPostion = i;
             btns.get(i).addActionListener((e) -> {
                     setVisible(false);
-                    new AddConsultation(manager,doctorCount).setVisible(true);});
+                    new AddConsultation(manager,doctorPostion).setVisible(true);});
             doctorsPnl.add(lbls.get(i));
             doctorsPnl.add(btns.get(i));
             for (JButton button : btns){

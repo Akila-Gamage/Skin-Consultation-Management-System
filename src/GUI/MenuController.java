@@ -23,6 +23,10 @@ abstract class MenuController extends JFrame {
         x.setForeground(Color.white);
 
     }
+    public void viewDetailsLbl(JLabel x){
+        x.setFont(new Font("SansSerif",Font.BOLD,15));
+        x.setForeground(Color.red);
+    }
 
     public void backGroundClr(JPanel x){
         x.setBackground(Color.cyan);

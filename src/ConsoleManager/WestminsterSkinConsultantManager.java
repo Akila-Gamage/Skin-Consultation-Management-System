@@ -21,9 +21,6 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
 
             System.out.println("Add a new Doctor");
 
-            System.out.println("Enter the Medical License Number of the doctor: ");
-            MID = inputString();
-
             System.out.println("Enter the First name of the doctor: ");
             FName = inputString().trim();
 
@@ -49,6 +46,10 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
                     System.out.println("Invalid date!");
                 }
             } while (loop);
+
+
+            System.out.println("Enter the Medical License Number of the doctor: ");
+            MID = inputString();
 
             System.out.println("Enter the speciality of the doctor: ");
             Speciality = inputString();
@@ -89,38 +90,16 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
                 }
             }
             System.out.println("Displaying all doctors...");
-            System.out.println("+-----------------------+-----------------------+-----------------------+-----------------------+---------------------------+-------------------------+");
-            System.out.println("|\t\tMedical ID\t\t|\t\tFirst Name\t\t|\t\tLast Name\t\t|\t\tMobile No\t\t|\t\tDate Of Birth\t\t| \t\tSpeciality\t\t  |");
-            System.out.println("+-----------------------+-----------------------+-----------------------+-----------------------+---------------------------+-------------------------+");
-            for (int m = 0; m < DoctorList.size(); m++) {
-                System.out.printf("|       %-15s |       %-15s |       %-15s |      %-16s |        %-18s |       %-17s |", DoctorList.get(m).getMedicalID(), DoctorList.get(m).getFName(), DoctorList.get(m).getLName(), DoctorList.get(m).getMobileNo(), DoctorList.get(m).getDOB(), DoctorList.get(m).getSpeciality());
+            System.out.println("+-----------------------+-----------------------+-----------------------+---------------------------+-----------------------------------+-------------------------+");
+            System.out.println("|\t\tFirst Name\t\t|\t\tLast Name\t\t|\t\tMobile No\t\t|\t\tDate Of Birth\t\t|\t\tMedical License Number\t\t| \t\tSpeciality\t\t  |");
+            System.out.println("+-----------------------+-----------------------+-----------------------+---------------------------+-----------------------------------+-------------------------+");
+            for (int i = 0; i < DoctorList.size(); i++) {
+                System.out.printf("|       %-15s |       %-15s |       %-15s |      %-20s |             %-21s |       %-17s |", DoctorList.get(i).getFName(), DoctorList.get(i).getLName(), DoctorList.get(i).getMobileNo(), DoctorList.get(i).getDOB(),DoctorList.get(i).getMedicalID(), DoctorList.get(i).getSpeciality());
                 System.out.println();
-                System.out.println("+-----------------------+-----------------------+-----------------------+-----------------------+---------------------------+-------------------------+");
+                System.out.println("+-----------------------+-----------------------+-----------------------+---------------------------+-----------------------------------+-------------------------+");
             }
             System.out.println();
             System.out.println();
-
-        }
-    }
-
-    public void WriteToFile() {
-        try {
-            PrintWriter bw = new PrintWriter(Files.newBufferedWriter(Paths.get("DoctorDetails.txt")));
-            //writing into file
-                bw.write("+-----------------------+-----------------------+-----------------------+-----------------------+---------------------------+-------------------------+\n");
-                bw.write("|\t\tMedical ID\t\t|\t\tFirst Name\t\t|\t\tLast Name\t\t|\t\tMobile No\t\t|\t\tDate Of Birth\t\t| \t\tSpeciality\t\t  |\n");
-                bw.write("+-----------------------+-----------------------+-----------------------+-----------------------+---------------------------+-------------------------+\n");
-                for (int i = 0; i < DoctorList.size(); i++) {
-                    bw.printf("|       %-15s |       %-15s |       %-15s |      %-16s |        %-18s |       %-17s |",DoctorList.get(i).getMedicalID(), DoctorList.get(i).getFName(), DoctorList.get(i).getLName(), DoctorList.get(i).getMobileNo(), DoctorList.get(i).getDOB(), DoctorList.get(i).getSpeciality());
-                    bw.println();
-                    bw.write("+-----------------------+-----------------------+-----------------------+-----------------------+---------------------------+-------------------------+");
-                    bw.println();
-                }
-            bw.println();
-            bw.close(); //Close
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
 
         }
     }
@@ -155,18 +134,6 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
             }
         }
 
-    }
-
-    public void ReadFile() {
-        try (BufferedReader br = new BufferedReader(new FileReader("DoctorDetails.txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (Exception e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
     }
 
     public int inputInt() { //method to input integer
@@ -204,11 +171,9 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
         System.out.println("|                                                       |");
         System.out.println("|           [4] - Save all Doctors to a file            |");
         System.out.println("|                                                       |");
-        System.out.println("|           [5] - Read all Doctors from the file         |");
+        System.out.println("|           [5] - Open GUI                              |");
         System.out.println("|                                                       |");
-        System.out.println("|           [6] - Open GUI                              |");
-        System.out.println("|                                                       |");
-        System.out.println("|           [7] - Exit                                  |");
+        System.out.println("|           [6] - Exit                                  |");
         System.out.println("|                                                       |");
         System.out.println("+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+");
         System.out.println("Enter your choice: ");
@@ -238,12 +203,9 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
                     SkinConsultantManager.saveFile();
                     break;
                 case 5:
-                    SkinConsultantManager.ReadFile();
-                    break;
-                case 6:
                     SkinConsultantManager.openGUI();
                     break;
-                case 7:
+                case 6:
                     loop = false;
                     break;
                 default:
@@ -260,6 +222,7 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
     public Doctor getDoctorArrayObj(int position){
         return this.DoctorList.get(position);
     }
+
 
     public void setDoctorList(Doctor doctor){
         this.DoctorList.add(doctor);

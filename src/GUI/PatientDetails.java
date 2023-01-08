@@ -1,11 +1,16 @@
 package GUI;
 
+import ConsoleManager.Consultation;
+import ConsoleManager.Patient;
 import ConsoleManager.SkinConsultantManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+
+import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
 
 public class PatientDetails extends MenuController{
     private JLabel NameLbl;
@@ -13,9 +18,9 @@ public class PatientDetails extends MenuController{
 
     private JTextField tFName, tLName, tYear, tMonth, tDay, tPatientID, tMobileNo;
     private JTextArea tNote;
-    JButton addPatientBtn, addPicBtn, backBtn;
+    JButton addPatientBtn, addPicBtn, backBtn, viewConsultationBtn;
 
-    public PatientDetails(SkinConsultantManager manager, int doctorNo){
+    public PatientDetails(SkinConsultantManager manager, int doctorPosition, Consultation consultation){
         MenuController(800,800,"Add Patient Details");
         JPanel contentPnl = new JPanel(new GridLayout(7,1));
         add(contentPnl);
@@ -112,9 +117,16 @@ public class PatientDetails extends MenuController{
         addPicBtnPnl.add(addPicBtn);
         JPanel picMsgPnl = new JPanel(new FlowLayout());
         backGroundClr(picMsgPnl);
-        picAddMessage = new JLabel("Picture added");
+        picAddMessage = new JLabel();
         picAddMessage.setFont(new Font("SansSerif",Font.BOLD,15));
         picMsgPnl.add(picAddMessage);
+        addPicBtn.addActionListener(e -> {
+//            JFrame imageUploadFrame = new JFrame("Upload Image For Consultation");
+//            FileDialog imageFileDialog = new FileDialog(imageUploadFrame, "Open", FileDialog.LOAD);
+//            imageFileDialog.setVisible(true);
+//            imageRefPath = imageFileDialog.getDirectory() + imageFileDialog.getFile();
+//            picAddMessage.setText("File Uploaded");
+        });
         picPnl.add(addPicBtnPnl);
         picPnl.add(picMsgPnl);
 
@@ -128,24 +140,58 @@ public class PatientDetails extends MenuController{
         backBtn = new JButton("Back");
         btnSettings(backBtn);
         backBtn.addActionListener(e -> {
-//                new AddConsultation(manager,docCount);
+                dispose();
+                new AddConsultation(manager,doctorPosition);
         });
         addPatientBtn = new JButton("Add Patient details");
         btnSettings(addPatientBtn);
         addPatientBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
-                new ConsultationAddAlert().setVisible(true);
+                addBtnOnAction(consultation);
             }
         });
+        viewConsultationBtn = new JButton("View Consultation");
+        btnSettings(viewConsultationBtn);
+        viewConsultationBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ViewConsultationDetails(consultation).setVisible(true);
+            }
+        });
+
         btnPnl.add(backBtn);
         btnPnl.add(addPatientBtn);
+        btnPnl.add(viewConsultationBtn);
         contentPnl.add(btnPnl);
 
-
     }
-//
+    private void addBtnOnAction(Consultation consultation){
+        if (!tFName.getText().equals("")){
+            if (!tLName.getText().equals("")){
+                if(!(tYear.getText().equals("") && tMonth.getText().equals("") && tDay.getText().equals(""))){
+                    if (!tPatientID.getText().equals("")){
+                        if (!tMobileNo.getText().equals("")){
+                            Patient patient = new Patient();
+                            LocalDate dateOfBirth = LocalDate.parse(tYear.getText()+"-"+tMonth.getText()+"-"+tDay.getText());
+                            patient.setFName(tFName.getText());
+                            patient.setLName(tLName.getText());
+                            patient.setDOB(dateOfBirth);
+                            patient.setPatientID(tPatientID.getText());
+                            patient.setMobileNo(tMobileNo.getText());
+                            patient.setNote(tNote.getText());
+                            consultation.setPatient(patient);
+                            System.out.println(consultation.getTime());
+                            System.out.println(consultation.getPatient().getLName());
+                            new ConsultationAddAlert(consultation).setVisible(true);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    //view kara butn ekk dapn -  view -
+
 //    public static void main(String[] args) {
 //        try {
 //            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());

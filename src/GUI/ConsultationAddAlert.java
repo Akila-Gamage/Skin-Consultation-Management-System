@@ -1,5 +1,8 @@
 package GUI;
 
+import ConsoleManager.Consultation;
+import ConsoleManager.SkinConsultantManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +12,7 @@ public class ConsultationAddAlert extends MenuController{
     private JLabel feedbackMsg;
     private JButton okBtn;
 
-    public ConsultationAddAlert(){
+    public ConsultationAddAlert(Consultation consultation){
         MenuController(300,150,"Alert!");
 
         JPanel contentPnl = new JPanel(new GridLayout(2,1));
@@ -27,20 +30,14 @@ public class ConsultationAddAlert extends MenuController{
         JPanel btnPnl = new JPanel(new FlowLayout());
         backGroundClr(btnPnl);
         okBtn = new JButton("Done");
-        okBtn.addActionListener(e -> dispose());
+        okBtn.addActionListener(e -> {
+            dispose();
+        });
         btnSettings(okBtn);
         btnPnl.add(okBtn);
         contentPnl.add(btnPnl);
 
     }
-//
-//    public static void main(String[] args) {
-//        try {
-//            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        new ConsultationAddAlert().setVisible(true);
-//    }
+
 
 }

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.UIManager;
 
+import ConsoleManager.Consultation;
 import ConsoleManager.Doctor;
 import ConsoleManager.SkinConsultantManager;
 import ConsoleManager.WestminsterSkinConsultantManager;
@@ -15,12 +16,7 @@ public class MainMenu extends JFrame {
 
     private JLabel mainMenuLabel  = new JLabel();
     private JLabel mainMenuPic = new JLabel();
-    private JButton btn1;
-    private JButton btn2;
-    private JButton btn3;
-    private JButton btn4;
-
-
+    private JButton btn1,btn2,btn3;
 
     public MainMenu(SkinConsultantManager manager){
             try {
@@ -41,12 +37,12 @@ public class MainMenu extends JFrame {
         add("North",mainMenuNamePnl);
 
         //Set Main menu options
-        JPanel mainMenuOptionPnl = new JPanel(new GridLayout(6,1));
+        JPanel mainMenuOptionPnl = new JPanel(new GridLayout(4,1));
         mainMenuOptionPnl.setBackground(Color.cyan);
 
         //Button 1 - View Doctor List
         btn1 = new JButton();
-        btnSettings(btn1,"View All Doctors",200);
+        btnSettings(btn1,"View All Doctors",400);
         btn1.addActionListener((e) -> {
             setVisible(false);
             new ViewAllDoctors(manager).setVisible(true);
@@ -54,20 +50,16 @@ public class MainMenu extends JFrame {
 
         //Button 2 - New Consultation
         btn2 = new JButton();
-        btnSettings(btn2,"New Consultation",300);
+        btnSettings(btn2,"New Consultation",500);
         btn2.addActionListener(e -> {
             setVisible(false);
             new NewConsultation(manager).setVisible(true);
         });
 
-        //Button 3 - View Consultation
+        //Button 3 - Exit
         btn3 = new JButton();
-        btnSettings(btn3,"View Consultation",400);
-
-        //Button 4 - Exit
-        btn4 = new JButton();
-        btnSettings(btn4,"Exit",500);
-        btn4.addActionListener(e -> {
+        btnSettings(btn3,"Exit",600);
+        btn3.addActionListener(e -> {
             System.exit(0);
         });
 

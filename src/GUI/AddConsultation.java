@@ -1,5 +1,7 @@
 package GUI;
 
+import ConsoleManager.Consultation;
+import ConsoleManager.Doctor;
 import ConsoleManager.SkinConsultantManager;
 
 import javax.swing.*;
@@ -14,7 +16,7 @@ public class AddConsultation extends MenuController{
 
     private JButton backBtn, checkBtn;
 
-    public AddConsultation(SkinConsultantManager manager, int doctorCount){
+    public AddConsultation(SkinConsultantManager manager, int doctorPosition){
         MenuController(800,600,"Add New Consultation");
         JPanel contentPnl= new JPanel(new GridLayout(6,1));
         add(contentPnl);
@@ -64,7 +66,7 @@ public class AddConsultation extends MenuController{
         //Return Information
         JPanel returnPnl = new JPanel(new FlowLayout());
         backGroundClr(returnPnl);
-        JLabel returnLbl = new JLabel("");
+        JLabel returnLbl = new JLabel();
         returnLbl.setFont(new Font("SansSerif",Font.BOLD,15));
         returnPnl.add(returnLbl);
         contentPnl.add(returnPnl);
@@ -79,7 +81,7 @@ public class AddConsultation extends MenuController{
             new NewConsultation(manager).setVisible(true);
         });
         checkBtn = new JButton("Check");
-        checkBtn.addActionListener((e) -> checkBtnOnAction());
+        checkBtn.addActionListener((e) -> checkBtnOnAction(manager,doctorPosition));
         btnSettings(checkBtn);
         btnPnl.add(backBtn);
         btnPnl.add(checkBtn);
@@ -87,11 +89,20 @@ public class AddConsultation extends MenuController{
 
 
     }
-    private void checkBtnOnAction(){
-        if (!year.getText().equals("") && !month.getText().equals("") && !day.getText().equals("")){
+    private void checkBtnOnAction(SkinConsultantManager manager, int doctorPostition){
+        if (!(year.getText().equals("") && !month.getText().equals("") && !day.getText().equals(""))){
             if (!startTime.getText().equals("")){
                 if (!requestedTimeField.getText().equals("")){
-                    returnLbl.setText("Data entered correctly");
+                    ;
+                    Consultation consultation = new Consultation();
+                    String consultationDate = year.getText()+"-"+month.getText()+"-"+day.getText();
+                    consultation.setDate(consultationDate);
+                    consultation.setTime(startTime.getText());
+                    consultation.setCost(calCost(Integer.parseInt(requestedTimeField.getText())));
+                    consultation.setRequestedTime(Integer.parseInt(requestedTimeField.getText()));
+                    manager.getDoctorArrayObj(doctorPostition).addConsultation(new Consultation());
+                    new PatientDetails(manager,doctorPostition,consultation).setVisible(true);
+                    System.out.println(consultation.getDate());
                 }else {
                     returnLbl.setText("Input request time correctly");
                 }
@@ -102,5 +113,16 @@ public class AddConsultation extends MenuController{
             returnLbl.setText("Input date correctly");
         }
     }
+
+    private double calCost(int reqTime){
+        double cost;
+        if(reqTime == 1){
+            cost = 15;
+        }else {
+            cost = 15 + ((reqTime-1)*25);
+        }
+        return cost;
+    }
+
 
 }
