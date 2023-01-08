@@ -17,8 +17,6 @@ public class testGui {
         w.setDoctorList(new Doctor("sdsd","dwd","dsad","2321423", DOB,"heart"));
         w.setDoctorList(new Doctor("sdsd","dwd","dsad","2321423", DOB,"heart"));
         w.setDoctorList(new Doctor("sdsd","dwd","dsad","2321423", DOB,"heart"));
-        w.setDoctorList(new Doctor("sdsd","dwd","dsad","2321423", DOB,"heart"));
-        w.setDoctorList(new Doctor("sdsd","dwd","dsad","2321423", DOB,"heart"));
         w.openGUI();
     }
 }

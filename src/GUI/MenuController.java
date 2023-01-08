@@ -15,13 +15,17 @@ abstract class MenuController extends JFrame {
         setResizable(false);
         setLayout(new BorderLayout());
     }
-    public void Button(JButton y, String name){
-        y.setBounds(0,0,90,40);
-        y.setText(name);
-        y.setFocusable(false);
-        y.setBackground(Color.WHITE);
+
+    public void btnSettings(JButton x){
+        x.setFont(new Font("SansSerif",Font.BOLD,15));
+        x.setFocusable(false);
+        x.setBackground(Color.blue);
+        x.setForeground(Color.white);
+
     }
 
-
+    public void backGroundClr(JPanel x){
+        x.setBackground(Color.cyan);
+    }
 }
 

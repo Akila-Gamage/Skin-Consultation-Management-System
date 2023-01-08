@@ -22,54 +22,65 @@ public class MainMenu extends JFrame {
 
 
 
-    public MainMenu(SkinConsultantManager SCM){
+    public MainMenu(SkinConsultantManager manager){
             try {
                 UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        //set Window
         ViewLayout(800, 800,"Westminster Skin Consultant Management System");
 
+        // Set Main menu Name
         JPanel mainMenuNamePnl = new JPanel(new FlowLayout());
         mainMenuLabel.setText("Westminster Skin Consultant Management System");
-        mainMenuPic.setIcon(new ImageIcon("abc.png"));
-        Dimension size = mainMenuPic.getPreferredSize();
-//        mainMenuPic.setBounds(50,30);
-        mainMenuLabel.setFont(new Font("Arial",Font.BOLD,30));
+        mainMenuLabel.setFont(new Font("SansSerif",Font.BOLD,30));
         mainMenuNamePnl.setSize(50,300);
         mainMenuNamePnl.setBackground(Color.cyan);
         mainMenuNamePnl.add(mainMenuLabel);
+        add("North",mainMenuNamePnl);
 
+        //Set Main menu options
         JPanel mainMenuOptionPnl = new JPanel(new GridLayout(6,1));
         mainMenuOptionPnl.setBackground(Color.cyan);
-        btn1 = new JButton();
-        btnSettings(btn1,"View All Doctors",300);
-        btn1.addActionListener((e) -> {
-            dispose();
-            new ViewAllDoctors(SCM).setVisible(true);
-        });
-        btn2 = new JButton();
-        btnSettings(btn2,"Add Consultation",400);
-        btn2.addActionListener(e -> {
-            dispose();
-            new AddConsultation();
-        });
-        btn3 = new JButton();
-        btnSettings(btn3,"qwerty",500);
-        btn4 = new JButton();
-        btnSettings(btn4,"Exit",600);
 
-        add(mainMenuNamePnl,BorderLayout.NORTH);
-        add(mainMenuOptionPnl,BorderLayout.CENTER);
+        //Button 1 - View Doctor List
+        btn1 = new JButton();
+        btnSettings(btn1,"View All Doctors",200);
+        btn1.addActionListener((e) -> {
+            setVisible(false);
+            new ViewAllDoctors(manager).setVisible(true);
+        });
+
+        //Button 2 - New Consultation
+        btn2 = new JButton();
+        btnSettings(btn2,"New Consultation",300);
+        btn2.addActionListener(e -> {
+            setVisible(false);
+            new NewConsultation(manager).setVisible(true);
+        });
+
+        //Button 3 - View Consultation
+        btn3 = new JButton();
+        btnSettings(btn3,"View Consultation",400);
+
+        //Button 4 - Exit
+        btn4 = new JButton();
+        btnSettings(btn4,"Exit",500);
+        btn4.addActionListener(e -> {
+            System.exit(0);
+        });
+
+        add("Center",mainMenuOptionPnl);
 
     }
     public void btnSettings(JButton x,String name,int y){
         x.setBounds(200,y,350,60);
         x.setText(name);
+        x.setFont(new Font("SansSerif",Font.BOLD,15));
         x.setFocusable(false);
         x.setBackground(Color.blue);
         x.setForeground(Color.white);
-//        x.addActionListener(this);
         this.add(x);
 
     }
@@ -82,19 +93,4 @@ public class MainMenu extends JFrame {
         setResizable(false);
     }
 
-
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        if (e.getSource()==btn1){
-//            this.dispose();
-//            new Menu();
-//        }else if (e.getSource()==btn2){
-//            this.dispose();
-//            new NewConsultation();
-//        } else if (e.getSource()==btn3) {
-//            this.dispose();
-//        } else if (e.getSource()==btn4) {
-//            System.exit(0);
-//        }
-//    }
 }

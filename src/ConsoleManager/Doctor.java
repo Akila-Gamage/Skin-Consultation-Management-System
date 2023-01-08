@@ -1,15 +1,13 @@
 package ConsoleManager;
 
-import ConsoleManager.Consultation;
-
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Doctor extends Person {
     private String Speciality;
     private static String MedicalID;
+    private ArrayList<Consultation> consultations = new ArrayList<>();
 
-
-    private Consultation consultation = new Consultation();
     public Doctor(String MedicalID ,String FName, String LName, String MobileNo, LocalDate DOB, String Speciality){
         this.MedicalID = MedicalID;
         setFName(FName);
@@ -19,14 +17,24 @@ public class Doctor extends Person {
         this.Speciality = Speciality;
     }
 
-    //getters
+    public void addConsultation(Consultation consultation){
+        consultations.add(consultation);
+    }
 
+    //getters
     public String getSpeciality() {
         return Speciality;
     }
     public String getMedicalID() {
         return MedicalID;
     }
+    public ArrayList<Consultation> getConsultationsArrayList(){
+        return this.consultations;
+    }
+    public Consultation getConsultation(int position){
+        return consultations.get(position);
+    }
+
 
     //setters
 
@@ -36,4 +44,6 @@ public class Doctor extends Person {
     public void setMedicalID(String medicalID) {
         MedicalID = medicalID;
     }
+
+
 }

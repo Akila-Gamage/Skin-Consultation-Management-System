@@ -21,7 +21,7 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
 
             System.out.println("Add a new Doctor");
 
-            System.out.println("Enter the Medical ID of the doctor: ");
+            System.out.println("Enter the Medical License Number of the doctor: ");
             MID = inputString();
 
             System.out.println("Enter the First name of the doctor: ");
@@ -79,12 +79,21 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
         if (DoctorList.size() == 0) {
             System.out.println("No doctors to display!");
         } else {
+            for (int i = 0; i < DoctorList.size(); i++) {
+                for (int j = i+1; j < DoctorList.size(); j++) {
+                    if (DoctorList.get(i).getFName().compareToIgnoreCase(DoctorList.get(j).getLName())>0){
+                        Doctor temp = DoctorList.get(i);
+                        DoctorList.set(i,DoctorList.get(j));
+                        DoctorList.set(j,temp);
+                    }
+                }
+            }
             System.out.println("Displaying all doctors...");
             System.out.println("+-----------------------+-----------------------+-----------------------+-----------------------+---------------------------+-------------------------+");
             System.out.println("|\t\tMedical ID\t\t|\t\tFirst Name\t\t|\t\tLast Name\t\t|\t\tMobile No\t\t|\t\tDate Of Birth\t\t| \t\tSpeciality\t\t  |");
             System.out.println("+-----------------------+-----------------------+-----------------------+-----------------------+---------------------------+-------------------------+");
-            for (int i = 0; i < DoctorList.size(); i++) {
-                System.out.printf("|       %-15s |       %-15s |       %-15s |      %-16s |        %-18s |       %-17s |", DoctorList.get(i).getMedicalID(), DoctorList.get(i).getFName(), DoctorList.get(i).getLName(), DoctorList.get(i).getMobileNo(), DoctorList.get(i).getDOB(), DoctorList.get(i).getSpeciality());
+            for (int m = 0; m < DoctorList.size(); m++) {
+                System.out.printf("|       %-15s |       %-15s |       %-15s |      %-16s |        %-18s |       %-17s |", DoctorList.get(m).getMedicalID(), DoctorList.get(m).getFName(), DoctorList.get(m).getLName(), DoctorList.get(m).getMobileNo(), DoctorList.get(m).getDOB(), DoctorList.get(m).getSpeciality());
                 System.out.println();
                 System.out.println("+-----------------------+-----------------------+-----------------------+-----------------------+---------------------------+-------------------------+");
             }
@@ -114,6 +123,38 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
             e.printStackTrace();
 
         }
+    }
+
+    public void saveFile(){
+        try {
+            FileOutputStream fileOut = new FileOutputStream("DoctorDetails.txt");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(DoctorList);
+            out.close();
+            fileOut.close();
+            System.out.println("Object saved to file.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadFile(){
+        File file = new File("DoctorDetails.txt");
+        if (file.exists()){
+            try {
+                FileInputStream fileIn = new FileInputStream("DoctorDetails.txt");
+                ObjectInputStream in = new ObjectInputStream(fileIn);
+                DoctorList = (ArrayList<Doctor>) in.readObject();
+                in.close();
+                fileIn.close();
+                System.out.println("Object loaded from file.");
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     public void ReadFile() {
@@ -178,11 +219,11 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
 
         WestminsterSkinConsultantManager SkinConsultantManager = new WestminsterSkinConsultantManager();
         boolean loop = true;
+        SkinConsultantManager.loadFile();
         do{
             int menuNumber = SkinConsultantManager.menu();
             switch (menuNumber) {
                 case -1:
-                    SkinConsultantManager.addDoctor();
                     break;
                 case 1:
                     SkinConsultantManager.addDoctor();
@@ -194,7 +235,7 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
                     SkinConsultantManager.displayDoctor();
                     break;
                 case 4:
-                    SkinConsultantManager.WriteToFile();
+                    SkinConsultantManager.saveFile();
                     break;
                 case 5:
                     SkinConsultantManager.ReadFile();
@@ -226,6 +267,7 @@ public class WestminsterSkinConsultantManager implements SkinConsultantManager {
     public ArrayList<Doctor> getDoctorArray(){
         return this.DoctorList;
     }
+
 
 }
 
